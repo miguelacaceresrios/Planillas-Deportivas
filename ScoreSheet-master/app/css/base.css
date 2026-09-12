@@ -1,0 +1,111 @@
+/* Tokens, reset y tipografía. Nada específico de la aplicación. */
+
+:root {
+    color-scheme: dark;
+
+    --bg: #0b1015;
+    --panel: #121a22;
+    --panel-2: #161f28;
+    --field: #0d141a;
+
+    --line: #24313d;
+    --line-soft: #1a232c;
+    /* Borde de un control interactivo: debe distinguirse del fondo (3:1). */
+    --control-line: #566a7a;
+
+    --text: #e7eef4;
+    --muted: #93a5b5;
+    --accent: #4cc2ff;
+    --accent-ink: #05202e;
+    --danger: #f06a62;
+    --warn: #e6b867;
+
+    --radius: 10px;
+    --radius-sm: 6px;
+
+    --font: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+
+    /* Ancho útil de una A4 vertical con márgenes de 12mm. */
+    --sheet-width: 186mm;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+figure {
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(1100px 520px at 12% -12%, #17242f 0%, transparent 62%),
+        var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+}
+
+h2 {
+    font-size: 0.95rem;
+}
+
+h3 {
+    font-size: 0.85rem;
+}
+
+button {
+    font: inherit;
+}
+
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+/* Oculta los spinners de los campos numéricos: en una planilla estorban. */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+
+/* --- Integración con el sistema --- */
+
+:root {
+    /* Controles nativos (calendario, números) en el tono de la aplicación. */
+    accent-color: var(--accent);
+    scrollbar-color: #2b3945 transparent;
+}
+
+::selection {
+    background: rgba(76, 194, 255, 0.30);
+    color: #fff;
+}

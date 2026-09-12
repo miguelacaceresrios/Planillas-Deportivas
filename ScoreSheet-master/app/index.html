@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Rellena, revisa e imprime planillas deportivas oficiales. Funciona sin conexión.">
+    <meta name="theme-color" content="#0b1015">
+    <title>Planillas Deportivas</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/sheet.css">
+</head>
+
+<body>
+    <!-- El HTML es sólo el armazón: las pestañas, el formulario y la planilla
+         se generan desde el esquema de js/schema.js. -->
+
+    <header class="app-header no-print">
+        <div class="brand">
+            <div>
+                <h1>Planillas Deportivas</h1>
+                <p>Rellena, revisa e imprime la planilla oficial</p>
+            </div>
+        </div>
+        <div class="app-actions">
+            <button type="button" class="btn ghost" data-action="import">Importar</button>
+            <button type="button" class="btn ghost" data-action="export-json">JSON</button>
+            <button type="button" class="btn ghost" data-action="export-csv">CSV</button>
+            <button type="button" class="btn primary" data-action="print">Imprimir</button>
+        </div>
+    </header>
+
+    <nav class="sport-tabs no-print" id="tabs" role="tablist" aria-label="Deportes"></nav>
+
+    <main class="workspace" id="workspace">
+        <section class="editor no-print" id="editor" aria-label="Formulario de datos">
+            <div class="sheetbar" id="sheetbar"></div>
+            <div id="form-host"></div>
+            <div class="review" id="review"></div>
+        </section>
+        <section class="sheet-wrap" id="sheet-wrap">
+            <article class="sheet" id="sheet" aria-label="Planilla"></article>
+        </section>
+    </main>
+
+    <noscript>
+        <p style="padding: 20px;">Esta aplicación necesita JavaScript activado.</p>
+    </noscript>
+
+    <script src="js/dom.js"></script>
+    <script src="js/schema.js"></script>
+    <script src="js/compute.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/io.js"></script>
+    <script src="js/demo.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

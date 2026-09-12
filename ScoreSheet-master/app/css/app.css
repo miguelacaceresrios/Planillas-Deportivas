@@ -1,0 +1,463 @@
+/* Cromo de la aplicación: cabecera, pestañas de deporte y editor.
+   Todo esto desaparece al imprimir (ver sheet.css). */
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 20px;
+    background: linear-gradient(180deg, rgba(19, 28, 37, 0.96), rgba(15, 22, 29, 0.96));
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand p {
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.app-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* --- Botones --- */
+
+.btn {
+    padding: 0.5rem 0.95rem;
+    border: 1px solid var(--control-line);
+    border-radius: var(--radius-sm);
+    background: var(--panel-2);
+    color: var(--text);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+    background: #1e2831;
+    border-color: #7d93a3;
+}
+
+.btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+}
+
+.btn.primary:hover {
+    background: #6ccdff;
+    border-color: #6ccdff;
+}
+
+.btn.ghost {
+    background: transparent;
+}
+
+.btn.small {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.76rem;
+}
+
+/* --- Pestañas de deporte --- */
+
+.sport-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 12px 20px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.tab {
+    flex: 0 0 auto;
+    padding: 0.5rem 0.95rem;
+    border: 1px solid var(--control-line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+}
+
+.tab:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.tab[aria-selected="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+}
+
+/* --- Espacio de trabajo: editor a la izquierda, hoja a la derecha --- */
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 20px;
+    padding: 0 20px 24px;
+    align-items: start;
+}
+
+.editor,
+.sheet-wrap {
+    max-height: calc(100vh - 150px);
+    overflow: auto;
+    scrollbar-width: thin;
+}
+
+.editor {
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+}
+
+.sheet-wrap {
+    display: flex;
+    /* flex-start y no el stretch por defecto: con stretch la hoja adopta la
+       altura del contenedor y todo lo que sobra se pinta fuera del papel. */
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4px;
+}
+
+@media (max-width: 1080px) {
+    .workspace {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .editor,
+    .sheet-wrap {
+        max-height: none;
+        overflow: visible;
+    }
+}
+
+/* --- Bloques del formulario --- */
+
+.block + .block {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line-soft);
+}
+
+.block-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.block-head h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    font-size: 0.72rem;
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 0.74rem;
+}
+
+/* --- Campos --- */
+
+.field-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.field > label {
+    color: var(--muted);
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.input {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--control-line);
+    border-radius: var(--radius-sm);
+    background: var(--field);
+    font-size: 0.85rem;
+    transition: border-color 0.15s;
+}
+
+.input::placeholder {
+    color: #748695;
+}
+
+.input:hover:not(:focus) {
+    border-color: #7d93a3;
+}
+
+.input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(76, 194, 255, 0.15);
+    outline: none;
+}
+
+textarea.input {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* --- Tabla editable (plantillas y listas de competidores) --- */
+
+.scroll-x {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    padding-bottom: 4px;
+}
+
+.grid-table {
+    display: grid;
+    gap: 4px;
+    align-items: center;
+    min-width: max-content;
+}
+
+.gt-head {
+    padding: 0 2px 4px;
+    color: var(--muted);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.gt-num {
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.gt-group {
+    grid-column: 1 / -1;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed var(--line);
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.grid-table .input {
+    padding: 0.35rem 0.45rem;
+    font-size: 0.8rem;
+}
+
+.row-remove {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 1px solid var(--control-line);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.row-remove:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.block-foot {
+    margin-top: 10px;
+}
+
+/* --- Marcador por periodos dentro del formulario --- */
+
+.periods-grid {
+    display: grid;
+    gap: 8px;
+}
+
+.periods-row {
+    display: grid;
+    grid-template-columns: minmax(90px, 150px) 1fr auto;
+    align-items: center;
+    gap: 10px;
+}
+
+.periods-row .team-name {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.periods-inputs {
+    display: flex;
+    gap: 6px;
+}
+
+.periods-inputs .input {
+    width: 52px;
+    padding: 0.35rem 0.2rem;
+    text-align: center;
+}
+
+.periods-total {
+    min-width: 44px;
+    padding: 0.3rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--panel-2);
+    font-weight: 700;
+    text-align: center;
+}
+
+/* --- Barra de planillas guardadas --- */
+
+.sheetbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.sheetbar-label {
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.sheetbar select.input {
+    flex: 1 1 150px;
+    max-width: 230px;
+}
+
+.sheetbar input.input {
+    flex: 1 1 130px;
+}
+
+.sheetbar-actions {
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+}
+
+/* --- Institución (plegable) --- */
+
+details.config summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+details.config[open] summary {
+    margin-bottom: 12px;
+}
+
+.logo-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.logo-preview {
+    width: 38px;
+    height: 38px;
+    padding: 2px;
+    border-radius: 4px;
+    background: #fff;
+    object-fit: contain;
+}
+
+/* --- Campos calculados: se ven, no se tocan --- */
+
+.input.computed {
+    background: rgba(76, 194, 255, 0.07);
+    border-color: rgba(76, 194, 255, 0.25);
+    color: var(--accent);
+    cursor: default;
+}
+
+/* --- Revisión --- */
+
+.review {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line-soft);
+}
+
+.review-title {
+    margin-bottom: 8px;
+    color: var(--accent);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.review-ok {
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding-left: 18px;
+}
+
+.review-list li {
+    font-size: 0.78rem;
+}
+
+/* Lo que falta por rellenar es una nota, no una alarma: gris y sin viñeta. */
+.review-list li.info {
+    margin-left: -18px;
+    color: var(--muted);
+    list-style: none;
+}
+
+.review-list li.warn {
+    color: var(--warn);
+}
+
+.review-list li.error {
+    color: var(--danger);
+}
