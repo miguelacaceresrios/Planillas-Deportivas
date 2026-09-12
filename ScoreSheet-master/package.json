@@ -1,0 +1,12 @@
+{
+    "name": "planillas-deportivas",
+    "version": "3.0.0",
+    "private": true,
+    "description": "Planillas deportivas imprimibles. Sin dependencias, sin build.",
+    "scripts": {
+        "test": "node test/smoke.js",
+        "build": "node tools/build.js",
+        "contrast": "node tools/contrast.js"
+    },
+    "license": "MIT"
+}
